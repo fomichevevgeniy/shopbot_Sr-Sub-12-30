@@ -48,6 +48,7 @@ async def choice_delivery(message: Message):
                          reply_markup=generate_delivery_type())
 
 
+@dp.message_handler(regexp='◀ К филиалам')
 @dp.message_handler(regexp='🏃 Самовывоз')
 async def choice_filial(message: Message):
     await message.answer('Выберите филиал', reply_markup=generate_filials())
@@ -59,4 +60,6 @@ filials = [i[0] for i in db.get_filials()] # ['максимка', 'чорсу']
 async def show_menu(message: Message):
     await message.answer('Выберите категорию: ', reply_markup=generate_categories())
 
+
+# Реакция на категорию и вывод списка товаров по этой категории
 

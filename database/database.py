@@ -89,3 +89,16 @@ class DataBase:
     def get_categories(self):
         sql = '''SELECT category_title FROM categories'''
         return self.manager(sql, fetchall=True)
+
+
+    def create_products_table(self):
+        sql = '''
+        CREATE TABLE IF NOT EXISTS products(
+            product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            product_title VARCHAR(50) UNIQUE,
+            
+        )
+        '''
+
+
+
