@@ -65,3 +65,27 @@ class DataBase:
         return self.manager(sql, fetchall=True)
 
 
+    def create_categories_table(self):
+        sql = '''
+        CREATE TABLE IF NOT EXISTS categories(
+            category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category_title VARCHAR(50)
+        )
+        '''
+        self.manager(sql, commit=True)
+
+    def insert_categories(self):
+        sql = '''
+        INSERT INTO categories(category_title) VALUES 
+        ('🍕 Пицца'),
+        ('🥛 Напитки'),
+        ('🔥 Горячие закуски'),
+        ('🥗 Салаты'),
+        ('🍮 Десерты'),
+        ('🦀 Соусы')
+        '''
+        self.manager(sql, commit=True)
+
+    def get_categories(self):
+        sql = '''SELECT category_title FROM categories'''
+        return self.manager(sql, fetchall=True)

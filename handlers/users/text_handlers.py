@@ -3,7 +3,8 @@ from data.loader import bot, dp, db
 from states.states import NumberState
 from aiogram.dispatcher import FSMContext
 import re
-from keyboards.reply import generate_main_menu, generate_delivery_type, generate_filials
+from keyboards.reply import generate_main_menu, \
+    generate_delivery_type, generate_filials, generate_categories
 
 async def start_register(message: Message, state=None):
     await NumberState.phone.set()
@@ -56,6 +57,6 @@ filials = [i[0] for i in db.get_filials()] # ['максимка', 'чорсу']
 
 @dp.message_handler(lambda message: message.text in filials)
 async def show_menu(message: Message):
-    pass
+    await message.answer('Выберите категорию: ', reply_markup=generate_categories())
 
 
